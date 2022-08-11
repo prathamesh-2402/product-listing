@@ -4,7 +4,7 @@ import { brand, category, price } from "../data/data";
 
 export const Filters = ({ filters, setFilters }) => {
   return (
-    <div className="bg-white rounded-md w-[18rem] h-min">
+    <div className="bg-white rounded-md w-[18rem] h-min shadow-lg">
       <div className="flex items-center justify-between border-b-2 border-[#ededed] pb-[0.5rem] px-[1rem] pt-[0.5rem]">
         <h1 className="text-[1.5rem] ">Filter</h1>
         <UilSlidersVAlt className="rotate-90" />
@@ -16,7 +16,7 @@ export const Filters = ({ filters, setFilters }) => {
           <div className="">
             {brand?.map((itm, k) => {
               return (
-                <div className="flex items-center gap-[0.5rem]">
+                <div className="flex items-center gap-[0.5rem]" key={k}>
                   <input
                     checked={filters?.brand === itm?.name}
                     type="checkbox"
@@ -40,7 +40,7 @@ export const Filters = ({ filters, setFilters }) => {
           <div className="">
             {category?.map((itm, k) => {
               return (
-                <div className="flex items-center gap-[0.5rem]">
+                <div className="flex items-center gap-[0.5rem]" key={k}>
                   <input
                     checked={filters.category === itm?.name}
                     type="checkbox"
@@ -61,10 +61,9 @@ export const Filters = ({ filters, setFilters }) => {
         </div>
         <div className="flex flex-col gap-[0.1rem] pb-[0.8rem] px-[1rem]">
           <h1 className="text-[1rem] m-0">Price</h1>
-          <div className=" pb-[0.5rem]"></div>
           {price?.map((itm, k) => {
             return (
-              <div className="flex items-center gap-[0.5rem]">
+              <div className="flex items-center gap-[0.5rem]" key={k}>
                 <input
                   checked={filters.price == itm?.value}
                   type="checkbox"

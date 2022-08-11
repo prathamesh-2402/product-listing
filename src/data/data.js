@@ -14,9 +14,9 @@ export const data = [
     brand: "beyerdynamic",
     category: "headphones",
     img: "https://cdn.shopify.com/s/files/1/0153/8863/products/beyerdynamic-dt-880-pro-white-headphone-zone-13981647437887_700x.jpg?v=1599208163",
-    price: 557.4,
+    price: 547.4,
     reviewCount: 274,
-    originalPrice: 659.34,
+    originalPrice: 599.34,
     stars: 4,
   },
   {
@@ -64,9 +64,9 @@ export const data = [
     brand: "beyerdynamic",
     category: "headphones",
     img: "https://cdn.shopify.com/s/files/1/0153/8863/products/beyerdynamic-dt-990-pro-headphone-zone-13980757229631_700x.jpg?v=1598946249",
-    price: 556.4,
+    price: 566.4,
     reviewCount: 769,
-    originalPrice: 620.02,
+    originalPrice: 640.02,
     stars: 5,
   },
   {

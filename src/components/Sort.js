@@ -1,12 +1,12 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
-const Sort = () => {
+const Sort = ({ setSort }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -27,29 +27,29 @@ const Sort = () => {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={() => setSort("hl")}>
               {({ active }) => (
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
                   )}
                 >
                   Price high to low
                 </a>
               )}
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => setSort("lh")}>
               {({ active }) => (
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
                   )}
                 >
-                   Price low to high
+                  Price low to high
                 </a>
               )}
             </Menu.Item>
@@ -57,7 +57,7 @@ const Sort = () => {
         </Menu.Items>
       </Transition>
     </Menu>
-  )
-}
+  );
+};
 
 export default Sort;

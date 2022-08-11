@@ -7,8 +7,8 @@ import Sort from "./components/Sort";
 import { data } from "./data/data";
 
 const App = () => {
-  const [datax, setDatax] = React.useState(data);
-  const [tempDatax, setTempDatax] = React.useState(data);
+  const [details, setDetails] = React.useState(data);
+  const [tempData, setTempData] = React.useState(data);
   const [search, setSearch] = React.useState("");
   const [count, setCount] = React.useState(0);
   const [sort, setSort] = React.useState("");
@@ -23,51 +23,52 @@ const App = () => {
     if (count === 0) {
       setSort("lh");
     }
+    // console.log("hmmm-->",tempData)
   }, []);
 
   const searchMain = (firstVal, secondVal) => {
     if (firstVal !== "price") {
-      let arr = tempDatax.filter((itm) => {
+      let arr = tempData?.filter((itm) => {
         if (itm?.[firstVal]?.toLowerCase().includes(secondVal?.toLowerCase())) {
           return itm;
         }
       });
       return arr;
     } else {
-      if (secondVal === 100) {
-        let arr = tempDatax.filter((itm) => {
+      if (secondVal == 100) {
+        let arr = tempData?.filter((itm) => {
           if (itm?.price < secondVal) {
             return itm;
           }
         });
         return arr;
       }
-      if (secondVal === 199) {
-        let arr = tempDatax.filter((itm) => {
+      if (secondVal == 199) {
+        let arr = tempData?.filter((itm) => {
           if (itm?.price >= 100 && itm?.price <= secondVal) {
             return itm;
           }
         });
         return arr;
       }
-      if (secondVal === 599) {
-        let arr = tempDatax.filter((itm) => {
+      if (secondVal == 599) {
+        let arr = tempData?.filter((itm) => {
           if (itm?.price >= 200 && itm?.price <= secondVal) {
             return itm;
           }
         });
         return arr;
       }
-      if (secondVal === 999) {
-        let arr = tempDatax.filter((itm) => {
+      if (secondVal == 999) {
+        let arr = tempData?.filter((itm) => {
           if (itm?.price >= 600 && itm?.price <= secondVal) {
             return itm;
           }
         });
         return arr;
       }
-      if (secondVal === 1000) {
-        let arr = tempDatax.filter((itm) => {
+      if (secondVal == 1000) {
+        let arr = tempData?.filter((itm) => {
           if (itm?.price > secondVal) {
             return itm;
           }
@@ -77,21 +78,19 @@ const App = () => {
     }
   };
   const sortBro = (type) => {
-    console.log(type);
     if (type === "hl") {
-      let arrNew = tempDatax;
+      let arrNew = tempData;
       let arr = arrNew.sort((a, b) => {
-        console.log(a.price, b.price);
         if (a.price > b.price) {
           return 1;
         } else {
           return -1;
         }
       });
-      setDatax(arr);
+      setDetails(arr);
     }
     if (type === "lh") {
-      let arrNew = tempDatax;
+      let arrNew = tempData;
       let arr = arrNew.sort((a, b) => {
         if (a.price < b.price) {
           return 1;
@@ -99,32 +98,32 @@ const App = () => {
           return -1;
         }
       });
-      setDatax(arr);
+      setDetails(arr);
     }
   };
   React.useEffect(() => {
     //data reset ifs
     if (search === "") {
-      setDatax(tempDatax);
+      setDetails(tempData);
     }
     if (brand === "") {
-      setDatax(tempDatax);
+      setDetails(tempData);
     }
     if (category === "") {
-      setDatax(tempDatax);
+      setDetails(tempData);
     }
     if (price === 0) {
-      setDatax(tempDatax);
+      setDetails(tempData);
     }
     //filter ifs
     if (search !== "") {
-      setDatax(searchMain("name", search));
+      setDetails(searchMain("name", search));
     } else if (brand !== "") {
-      setDatax(searchMain("brand", brand));
+      setDetails(searchMain("brand", brand));
     } else if (category !== "") {
-      setDatax(searchMain("category", category));
+      setDetails(searchMain("category", category));
     } else if (price > 0) {
-      setDatax(searchMain("price", price));
+      setDetails(searchMain("price", price));
     } else if (sort) {
       sortBro(sort);
     }
@@ -136,13 +135,13 @@ const App = () => {
       <div className="flex gap-8 my-8">
         <Filters filters={filters} setFilters={setFilters} />
         <div className="flex flex-col gap-4">
-          <div className="flex justify-between">
+          <div className="flex flex-col md:flex-row justify-between md:gap-[4rem] gap-2 md:items-center">
             <h1>Home/Audiophiles</h1>
             <Sort setSort={setSort} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-5 md:-gap-3 gap-2 mt-[1rem]">
-            {datax.length !== 0 ? (
-              datax?.map((item, key) => {
+            {details?.length !== 0 ? (
+              details?.map((item, key) => {
                 return (
                   <Product
                     key={key}
@@ -158,7 +157,10 @@ const App = () => {
                 );
               })
             ) : (
-              <h1>NO Product Found!</h1>
+              <div className="col-span-3 flex flex-col justify-center items-center">
+                <img src="https://www.tharagold.in/assets/img/no-product-found.png" className="w-[12rem]"/>
+                <h1>No Product Found!</h1>
+              </div>
             )}
           </div>
         </div>

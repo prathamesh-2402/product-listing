@@ -5,7 +5,7 @@ import ReviewStars from "./ReviewStars";
 export const Product = ({ name, brand, img, price, reviewCount, op, star }) => {
 
   const findDiscount = (p, o) => {
-    return Math.floor((p / o) * 100);
+    return Math.floor(100 - ((p / o) * 100));
   };
 
   return (
